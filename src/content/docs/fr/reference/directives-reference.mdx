@@ -133,6 +133,19 @@ Charge et hydrate le composant JavaScript une fois que le chargement initial de 
 ```astro
 <ShowHideButton client:idle />
 ```
+
+### `timeout`
+
+<p><Since v="4.15.0" /></p>
+
+Le temps d'attente maximal, en millisecondes, avant d'hydrater le composant, même si la page n'a pas encore terminé son chargement initial.
+
+Cela vous permet de transmettre une valeur pour [l'option `timeout` de la spécification `requestIdleCallback()`](https://www.w3.org/TR/requestidlecallback/#the-requestidlecallback-method). Cela signifie que vous pouvez retarder l'hydratation des éléments d'interface utilisateur de moindre priorité avec plus de contrôle pour garantir que votre élément est interactif dans un délai déterminé.
+
+```astro
+<ShowHideButton client:idle={{timeout: 500}} />
+```
+
 ### `client:visible`
 
 - **Priorité :** Faible
@@ -188,7 +201,7 @@ Si le composant est déjà masqué et affiché par une requête multimédia dans
 
 Depuis Astro 2.6.0, les intégrations peuvent également ajouter des directives `client:*` personnalisées pour modifier comment et quand les composants doivent être hydratés.
 
-Visitez la page [API `addClientDirective`](/fr/reference/integrations-reference/#addclientdirective-option) pour en savoir plus sur la création d'une directive client personnalisée.
+Visitez la page [API `addClientDirective`](/fr/reference/integrations-reference/#option-addclientdirective) pour en savoir plus sur la création d'une directive client personnalisée.
 
 ## Directives de Script et de Style
 
@@ -225,6 +238,7 @@ La directive `is:inline` signifie que les balises `<style>` et `<script>` :
 
 :::caution
 La directive `is:inline` est implicite chaque fois qu'un attribut autre que `src` est utilisé sur une balise `<script>` ou `<style>`.
+L'unique exception est l'utilisation de la [directive `define:vars`](/fr/reference/directives-reference/#definevars) sur la balise `<style>` qui n'implique pas `is:inline` automatiquement.
 :::
 
 ```astro

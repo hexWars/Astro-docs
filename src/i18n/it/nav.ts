@@ -5,6 +5,7 @@ export default NavDictionary({
 	'getting-started': 'Per Iniziare',
 	install: 'Installazione',
 	'editor-setup': 'Configurazione dell’Editor',
+	'upgrade-astro': 'Aggiorna Astro',
 
 	coreConcepts: 'Concetti Chiave',
 	'concepts/why-astro': 'Perché Astro',
@@ -27,6 +28,7 @@ export default NavDictionary({
 	'guides/content-collections': 'Collezioni di Contenuti',
 	'guides/view-transitions': 'View Transitions',
 	'guides/prefetch': 'Precaricamento',
+	'guides/dev-toolbar': 'Barra degli strumenti di sviluppo',
 
 	addons: 'Integrazioni',
 	'guides/integrations-guide': 'Guida alle integrazioni',
@@ -36,7 +38,6 @@ export default NavDictionary({
 
 	examples: 'Ricette',
 	'guides/migrate-to-astro': 'Passa ad Astro',
-	'recipes/studio': 'Connetti Astro Studio',
 	'guides/cms': 'Connetti una CMS',
 	'guides/backend': 'Aggiungi un servizio backend',
 	'guides/deploy': 'Pubblica il tuo sito',

@@ -10,6 +10,7 @@ import Checklist from '~/components/Checklist.astro';
 import MultipleChoice from '~/components/tutorial/MultipleChoice.astro';
 import Option from '~/components/tutorial/Option.astro';
 import PreCheck from '~/components/tutorial/PreCheck.astro';
+import { Steps } from '@astrojs/starlight/components';
 
 现在你有一些要展示的博客文章了，是时候配置博客页面来自动创建一个存档列表了！
 
@@ -21,12 +22,13 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 
 ## 动态展示文章列表
 
+<Steps>
 1. 将以下代码添加到 `blog.astro` 中，以返回关于所有 Markdown 文件的信息。`Astro.glob()` 将返回一个对象数组，每个博客文章对应一个对象。
 
     ```astro title="src/pages/blog.astro" ins={3}
     ---
     import BaseLayout from '../layouts/BaseLayout.astro'
-    const allPosts = await Astro.glob('../pages/posts/*.md');
+    const allPosts = await Astro.glob('./posts/*.md');
     const pageTitle = "我的 Astro 学习博客";
     ---
     <BaseLayout pageTitle={pageTitle}>
@@ -44,7 +46,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
     ```astro title="src/pages/blog.astro" del={9,10,11} ins={13}
     ---
     import BaseLayout from '../layouts/BaseLayout.astro'
-    const allPosts = await Astro.glob('../pages/posts/*.md');
+    const allPosts = await Astro.glob('./posts/*.md');
     const pageTitle = "我的 Astro 学习博客";
     ---
     <BaseLayout pageTitle={pageTitle}>
@@ -79,6 +81,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
     ```
 
 4. 在浏览器预览中重新访问博客页面 `http://localhost:4321/blog`，并查看更新后的包含四篇文章的列表，其中包括你的新博客文章！
+</Steps>
 
 <Box icon="puzzle-piece">
 
@@ -96,6 +99,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 <details>
 <summary>展开以查看步骤</summary>
 
+<Steps>
 1. 在 `src/components/` 中创建一个新的组件。
 
     <details>
@@ -166,6 +170,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
     </BaseLayout>
     ```
     </details>
+</Steps>
 </details>
 </Box>
 
@@ -177,7 +182,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 
 ```astro
 ---
-const myPosts = await Astro.glob('../pages/posts/*.md');
+const myPosts = await Astro.glob('./posts/*.md');
 ---
 ```
 

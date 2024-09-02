@@ -7,11 +7,11 @@ description: >-
   Используйте все, что вы узнали до сих пор, чтобы создать шапку с отзывчивой навигацией
 i18nReady: true
 ---
-import Badge from '~/components/Badge.astro';
 import Box from '~/components/tutorial/Box.astro';
 import Checklist from '~/components/Checklist.astro';
 import PreCheck from '~/components/tutorial/PreCheck.astro';
-
+import { Steps } from '@astrojs/starlight/components';
+import Badge from "~/components/Badge.astro"
 
 Поскольку ваш сайт будет просматриваться на разных устройствах, пришло время создать постраничную навигацию, которая сможет реагировать на разные размеры экрана!
 
@@ -25,6 +25,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 
 ## Попробуйте сами — Создайте новый компонент Header
 
+<Steps>
 1. Создайте новый компонент Header. Импортируйте и используйте существующий компонент `Navigation.astro` внутри элемента `<nav>`, который находится внутри элемента `<header>`.
 
     <details>
@@ -43,6 +44,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
     ```
 
     </details>
+</Steps>
 
 </Box>
 
@@ -53,6 +55,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 
 ## Попробуйте сами — Обновите ваши страницы
 
+<Steps>
 1. На каждой странице замените ваш существующий компонент `<Navigation/>` на вашу новую шапку.
 
     <details>
@@ -85,11 +88,13 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
     </details>
 
 2. Проверьте предварительный просмотр в браузере и убедитесь, что ваша шапка отображается на каждой странице. Пока она не выглядит иначе, но если вы проверите предварительный просмотр с помощью инструментов разработчика, вы увидите, что у вас теперь есть элементы, такие как `<header>` и `<nav>` вокруг ваших навигационных ссылок.
+</Steps>
 
 </Box>
 
 ## Добавьте отзывчивые стили
 
+<Steps>
 1. Обновите `Navigation.astro` классом CSS для управления навигационными ссылками. Оберните существующие навигационные ссылки в `<div>` с классом `nav-links`.
 
     ```astro title="src/components/Navigation.astro" ins={3,7}
@@ -181,6 +186,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 
     }
     ```
+</Steps>
 
 Измените размер окна и посмотрите, какие стили применяются при разной ширине экрана. Теперь ваша шапка **адаптивна** к размеру экрана с помощью `@media` запросов.
 
@@ -197,8 +203,8 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 
 ### Ресурсы
 
-- [Дизайн основанный на компонентах](https://www.droptica.com/blog/component-based-design/) <Badge>внешняя ссылка</Badge>
+- [Дизайн основанный на компонентах](https://www.droptica.com/blog/component-based-design/) <Badge class="neutral-badge" text="внешняя ссылка" />
 
-- [Семантические теги HTML](https://www.dofactory.com/html/semantics) <Badge>внешняя ссылка</Badge>
+- [Семантические теги HTML](https://www.dofactory.com/html/semantics) <Badge class="neutral-badge" text="внешняя ссылка" />
 
-- [Mobile-first дизайн](https://www.mobileapps.com/blog/mobile-first-design) <Badge>внешняя ссылка</Badge>
+- [Mobile-first дизайн](https://www.mobileapps.com/blog/mobile-first-design) <Badge class="neutral-badge" text="внешняя ссылка" />

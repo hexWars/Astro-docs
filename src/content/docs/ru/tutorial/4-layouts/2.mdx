@@ -7,12 +7,11 @@ description: >-
   Создайте макет записи блога для ваших файлов Markdown и передайте ему значения frontmatter в качестве свойств
 i18nReady: true
 ---
-import Badge from '~/components/Badge.astro';
 import Box from '~/components/tutorial/Box.astro';
 import Checklist from '~/components/Checklist.astro';
 import PreCheck from '~/components/tutorial/PreCheck.astro';
-
-
+import { Steps } from '@astrojs/starlight/components';
+import Badge from "~/components/Badge.astro"
 
 Теперь, когда у вас есть макет для страниц, пришло время добавить макет для записей блога!
 
@@ -25,6 +24,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 
 Когда вы добавляете свойство `layout` в frontmatter в файле `.md`, все значения ваших frontmatter YAML становятся доступными для файла макета.
 
+<Steps>
 1. Создайте новый файл в `src/layouts/MarkdownPostLayout.astro`
 
 2. Скопируйте следующий код в `MarkdownPostLayout.astro`
@@ -57,6 +57,7 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 4. Проверьте свой проект в браузере по адресу `http://localhost:4321/posts/post-1` и обратите внимание, что макет добавился на вашу страницу.
 
 5. Добавьте то же свойство макета к вашим двум другим постам блога (`post-2.md` и `post-3.md`). Проверьте в вашем браузере, что макет также применен к этим постам.
+</Steps>
 
 :::tip
 При использовании макетов у вас теперь есть возможность включать элементы, такие как заголовок страницы, в содержимое Markdown или в макет. Не забывайте визуально проверять предварительный просмотр страницы и вносить необходимые изменения, чтобы избежать дублирования элементов. 
@@ -177,4 +178,4 @@ const { frontmatter } = Astro.props;
 
 - [Свойства макета Markdown](/ru/basics/layouts/#markdownmdx-макеты)
 
-- [Введение в YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) <Badge>внешняя ссылка</Badge>
+- [Введение в YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) <Badge class="neutral-badge" text="внешняя ссылка" />

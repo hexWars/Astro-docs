@@ -8,6 +8,7 @@ i18nReady: true
 ---
 
 import PackageManagerTabs from '~/components/tabs/PackageManagerTabs.astro'
+import Since from '~/components/Since.astro';
 
 Esta **[integración de Astro][astro-integration]** habilita el renderizado del lado del servidor y la hidratación del lado del cliente para tus componentes de [Preact](https://preactjs.com/).
 
@@ -18,7 +19,7 @@ Preact es una biblioteca que te permite construir componentes UI interactivos pa
 Preact también es una gran opción si has utilizado anteriormente React. Preact proporciona la misma API que React, pero en un paquete mucho más pequeño de 3kB. Incluso admite la representación de muchos componentes de React mediante la opción de configuración `compat` (consulta a continuación).
 
 **¿Quieres aprender más sobre Preact antes de usar esta integración?**\
-Revisa [“Aprende Preact en 10 minutos”](https://preactjs.com/tutorial), un tutorial interactivo en su sitio web.
+Revisa [“Aprende Preact”](https://preactjs.com/tutorial), un tutorial interactivo en su sitio web.
 
 ## Instalación
 
@@ -150,6 +151,22 @@ Consulta las documentaciónes de [`pnpm` overrides](https://pnpm.io/package_json
 :::note
 Actualmente, la opción `compat` solo funciona para las bibliotecas de React que exportan código como ESM. Si ocurre un error durante la compilación, intenta agregar la biblioteca a `vite.ssr.noExternal: ['the-react-library']` en tu archivo `astro.config.mjs`.
 :::
+
+### devtools
+
+<p><Since pkg="@astrojs/preact" v="3.3.0" /></p>
+
+Puedes habilitar las [herramientas de desarrollo de Preact](https://preactjs.github.io/preact-devtools/) en desarrollo pasando un objeto con `devtools: true` a la configuración de tu integración `preact()`:
+
+```js title="astro.config.mjs"
+import { defineConfig } from 'astro/config';
+import preact from '@astrojs/preact';
+
+export default defineConfig({
+  // ...
+  integrations: [preact({ devtools: true })],
+});
+```
 
 ## Opciones
 

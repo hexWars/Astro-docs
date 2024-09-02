@@ -274,7 +274,7 @@ export default defineConfig({
 
 ##### 从缓存中排除路径
 
-要实现 Vercel 的[草稿模式](https://vercel.com/docs/build-output-api/v3/features#draft-mode)或[按需增量式静态再生 (ISR)](https://vercel.com/docs/build-output-api/v3/features#on-demand-incremental-static-regeneration-isr)，你可以创建一个绕过令牌，并将其连同任何要从缓存中排除的路径一起提供给 `isr` 配置：
+要实现 Vercel 的[草稿模式](https://vercel.com/docs/build-output-api/v3/features#draft-mode)或[按需增量式静态再生 (ISR)](https://vercel.com/docs/build-output-api/v3/features#on-demand-incremental-static-regeneration-isr)，你可以创建一个绕过令牌，并将其连同任何要从缓存中排除的路由一起提供给 `isr` 配置：
 
 ```js title="astro.config.mjs" {7-12}
 import { defineConfig } from 'astro/config';
@@ -287,7 +287,7 @@ export default defineConfig({
             // 你创建的一个秘密随机字符串。
             bypassToken: "005556d774a8",
             // 总是提供最新内容的路径。
-            exclude: [ "/api/invalidate" ] 
+            exclude: [ "/api/invalidate", "/posts/[...slug]" ]
         }
     })
 })
@@ -353,7 +353,34 @@ export default defineConfig({
 });
 ```
 
+### `skewProtection`
+
+**类型：** `boolean`<br/>
+**适用于：** Serverless
+<Since pkg="@astrojs/vercel" v="7.6.0" />
+
+使用此属性启用 [Vercel Skew protection](https://vercel.com/docs/deployments/skew-protection)（适用于 Vercel Pro 和企业账户）。
+
+```js title="astro.config.mjs" ins={8}
+import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel/serverless';
+
+export default defineConfig({
+// ...
+  output: "server",
+  adapter: vercel({
+    skewProtection: true
+  }),
+});
+```
+
 ### 函数打包配置
+
+:::caution[已废弃]
+`functionPerRoute` 选项已被弃用，并将在 Astro 5 中完全删除。此外，此选项与一些 Astro 功能不兼容，例如 i18n 域和请求重写。
+
+如果你当前已启用 `functionPerRoute: true`，我们建议尽快删除此配置选项。
+:::
 
 Vercel 适配器默认将所有路由组合成一个函数。
 
@@ -398,7 +425,6 @@ export default defineConfig({
 
 ```ts
 /// <reference path="../.astro/types.d.ts" />
-/// <reference types="astro/client" />
 
 type EdgeLocals = import('@astrojs/vercel').EdgeLocals
 

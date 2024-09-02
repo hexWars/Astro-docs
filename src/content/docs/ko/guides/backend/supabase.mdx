@@ -121,7 +121,7 @@ Supabase는 즉시 인증을 제공합니다. GitHub, Google, Kakao 및 기타 �
 - `POST /api/auth/signin`: 사용자를 로그인합니다.
 - `GET /api/auth/signout`: 사용자를 로그아웃합니다.
 
-프로젝트에 `src/pages/api/auth` 디렉터리에 이러한 엔드포인트를 생성합니다. 이제 프로젝트에는 다음과 같은 새 파일이 포함되어야 합니다.
+프로젝트의 `src/pages/api/auth` 디렉터리에 이러한 엔드포인트를 생성합니다. `hybrid` 렌더링 모드를 사용하는 경우, 각 파일 상단에 `export const prerender = false`를 지정해야 요청에 따라 이러한 엔드포인트를 렌더링할 수 있습니다. 이제 프로젝트에 이러한 새 파일이 포함되어야 합니다.
 
 <FileTree title="Project Structure">
 - src/
@@ -142,6 +142,8 @@ Supabase는 즉시 인증을 제공합니다. GitHub, Google, Kakao 및 기타 �
 `register.ts` 파일은 Supabase에서 새 사용자를 생성합니다. 이메일과 비밀번호가 포함된 `POST` 요청을 수락하고 Supabase SDK를 사용하여 새 사용자를 생성합니다.
 
 ```ts title="src/pages/api/auth/register.ts"
+// `output: 'hybrid'`가 구성된 경우:
+// export const prerender = false;
 import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase";
 
@@ -170,6 +172,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
 `signin.ts` 파일은 사용자를 로그인시킵니다. 이메일과 비밀번호가 포함된 `POST` 요청을 수락하고 Supabase SDK를 사용하여 사용자를 로그인합니다.
 
 ```ts title="src/pages/api/auth/signin.ts"
+// `output: 'hybrid'`가 구성된 경우:
+// export const prerender = false;
 import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase";
 
@@ -205,6 +209,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 `signout.ts` 파일은 사용자를 로그아웃시킵니다. `GET` 요청을 수락하고 사용자의 엑세스 토큰 및 리프레시 토큰을 제거합니다.
 
 ```ts title="src/pages/api/auth/signout.ts"
+// `output: 'hybrid'`가 구성된 경우:
+// export const prerender = false;
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async ({ cookies, redirect }) => {
@@ -254,11 +260,11 @@ import Layout from "../layouts/Layout.astro";
   <h1>Register</h1>
   <p>Already have an account? <a href="/signin">Sign in</a></p>
   <form action="/api/auth/register" method="post">
-    <label for="email" for="email">Email</label>
+    <label for="email">Email</label>
     <input type="email" name="email" id="email" />
     <label for="password">Password</label>
     <input type="password" name="password" id="password" />
-    <button type="submit">Login</button>
+    <button type="submit">Register</button>
   </form>
 </Layout>
 ```
@@ -283,7 +289,7 @@ if (accessToken && refreshToken) {
   <h1>Sign in</h1>
   <p>New here? <a href="/register">Create an account</a></p>
   <form action="/api/auth/signin" method="post">
-    <label for="email" for="email">Email</label>
+    <label for="email">Email</label>
     <input type="email" name="email" id="email" />
     <label for="password">Password</label>
     <input type="password" name="password" id="password" />
@@ -409,7 +415,7 @@ if (accessToken && refreshToken) {
   <h1>Sign in</h1>
   <p>New here? <a href="/register">Create an account</a></p>
   <form action="/api/auth/signin" method="post">
-    <label for="email" for="email">Email</label>
+    <label for="email">Email</label>
     <input type="email" name="email" id="email" />
     <label for="password">Password</label>
     <input type="password" name="password" id="password" />

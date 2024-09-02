@@ -4,8 +4,9 @@ description: Learn how to use JavaScript to send form submissions to an API Rout
 i18nReady: true
 type: recipe
 ---
+import { Steps } from '@astrojs/starlight/components';
 import UIFrameworkTabs from "~/components/tabs/UIFrameworkTabs.astro";
-import PackageManagerTabs from "~/components/tabs/PackageManagerTabs.astro"
+import PackageManagerTabs from "~/components/tabs/PackageManagerTabs.astro";
 
 An HTML form causes the browser to refresh the page or navigate to a new one. To send form data to an API endpoint instead, you must intercept the form submission using JavaScript. 
 
@@ -17,6 +18,7 @@ This recipe shows you how to send form data to an API endpoint and handle that d
 
 ## Recipe
 
+<Steps>
 1. Create a `POST` API endpoint at `/api/feedback` that will receive the form data. Use `request.formData()` to process it. Be sure to validate the form values before you use them. 
 
     This example sends a JSON object with a message back to the client.
@@ -165,7 +167,6 @@ This recipe shows you how to send form data to an API endpoint and handle that d
 
     </UIFrameworkTabs>
 
-
 3. Create a function that accepts a submit event, then pass it as a `submit` handler to your form. 
 
     In the function:
@@ -217,8 +218,9 @@ This recipe shows you how to send form data to an API endpoint and handle that d
         ```
       </Fragment>
       <Fragment slot="react">
-        ```tsx title="src/components/FeedbackForm.tsx" "/api/feedback" add={1, 4-17, 34} add="onSubmit={submit}" "formData" "e.preventDefault();"
-        import { FormEvent, useState } from "react";
+        ```tsx title="src/components/FeedbackForm.tsx" "/api/feedback" add={1-2, 5-18, 35} add="onSubmit={submit}" "formData" "e.preventDefault();"
+        import { useState } from "react";
+        import type { FormEvent } from "react";
 
         export default function Form() {
           const [responseMessage, setResponseMessage] = useState("");
@@ -424,6 +426,7 @@ This recipe shows you how to send form data to an API endpoint and handle that d
         ```
         </Fragment>
     </UIFrameworkTabs>
+</Steps>
 
 {/* ## Extension: Use Zod to validate your form
 
